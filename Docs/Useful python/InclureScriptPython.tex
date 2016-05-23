@@ -1,0 +1,71 @@
+\documentclass[article,10pt]{amsart}
+
+\usepackage{amsmath, latexsym,hyperref, amsfonts, amssymb, amsthm,
+  amscd,graphicx}
+
+\usepackage[T1]{fontenc}
+\usepackage[latin1]{inputenc}
+\usepackage{color}
+\title{}
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm,
+bottom=2cm]{geometry}
+
+\setlength{\parindent}{0pt}
+% Inserer dans votre fichier .tex les lignes suivantes pour integrer
+% du code source python dans vos rapports 
+\usepackage{listings}
+
+\usepackage{mathrsfs}
+\definecolor{darkgreen}{rgb}{0.4,0.7,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{lightgray}{rgb}{0.75,0.95,0.95}
+\definecolor{mediumgray}{rgb}{0.60,0.60,0.60}
+\definecolor{mauve}{rgb}{0.58,0,0.7}
+\definecolor{darkblue}{rgb}{0,0,0.8}
+
+\lstset{frame=tb,%
+  morekeywords={as}%
+  backgroundcolor=\color{lightgray},%
+  language=Python,%
+  aboveskip=3mm,%
+  belowskip=3mm,%
+  showstringspaces=false,%
+  columns=flexible,%
+  basicstyle={\small\ttfamily},%
+  numbers=none,%
+  numberstyle=\tiny\color{mauve},%
+  keywordstyle={\color{darkblue}},%
+  commentstyle=\color{mediumgray},%
+  stringstyle=\color{darkgreen},%
+  breaklines=true,%
+  breakatwhitespace=false%
+  tabsize=3%
+}
+
+\newcommand{\src}[1]{{\upshape \lstinline[language=Python]{#1}}}
+% Fin des lignes a inserer
+
+\begin{document}
+
+
+\hrule \vspace*{2pt}
+\noindent 
+\textbf{Math\'ematiques Appliqu\'ees}
+\hfill \textbf{Rapha\"el Deswarte} \\
+\textbf{MAP571 -- Enseignement d'approfondissement}    \hfill \textbf{Caroline Hillairet} \\
+\textbf{TP Initiation Python}\hfill \textbf{Aldjia Mazari}
+
+\vspace*{2pt}
+
+\begin{center}
+  \Large \textbf{ Inclure du code \textsc{python} dans \LaTeX}
+\end{center}
+
+\vspace*{10pt}
+Introduction du code \textsc{python} q1boucleVSvectoriel.py
+\lstinputlisting[language=Python]{q1boucleVSvectoriel.py}
+
+\end{document}
+
+
+
