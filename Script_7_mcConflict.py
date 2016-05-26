@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Estimation via Monte carlo the conflict probability 
-in functioj of the number of simulations
+in function of the number of simulations
 
 @author: felipe
 """
@@ -36,6 +36,9 @@ timemin = np.argmin(currdist, axis = 1)
 
 # Probability of collition
 prob = np.mean(mindist < 0.1)
+var = np.var(mindist < 0.1)
+erreur = 1.96*np.sqrt(var - prob**2)/np.sqrt(Nsim)
+print("MC estimation")
 print(prob)
-
-ind = mindist < 0.1
+print("Intervalle de conficance")
+print([prob-erreur, prob+erreur])
