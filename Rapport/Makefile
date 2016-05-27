@@ -13,7 +13,10 @@ pdf: $(FILE).tex
 edit: 
 	mate $(FILE).tex
 
-view: 
+bib: $(FILE).bib
+	mate $(FILE).bib
+
+view: $(FILE).pdf
 	open $(FILE).pdf
 
 clean:

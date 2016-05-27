@@ -1,20 +1,22 @@
 \documentclass[a4paper, 12pt,twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb,noconfigs]{babel}
-\usepackage[T1]{fontenc}
-\usepackage[scaled]{beramono}
-\renewcommand*\familydefault{ttdefault}
-\usepackage{listings}
-\lstset{
-  language=Python,
-  showstringspaces=false,
-  formfeed=\newpage,
-  tabsize=4,
-  commentstyle=\itshape,
-  basicstyle=\ttfamily,
-  morekeywords={models, lambda, forms}
-}
 
+\usepackage{lmodern,textcomp,ifthen,graphicx,enumitem}
+\usepackage[notes,
+            titlepage,
+            a4paper,
+            pagenumber,
+            sectionmark,
+            twoside,
+            fancysections]{polytechnique}
+\usepackage[colorlinks=true,
+            linkcolor=black,%bleu303,
+            filecolor=red,
+            urlcolor=bleu303,
+            bookmarks=true,
+            bookmarksopen=true]{hyperref}
+			
 %%%%%%%%%%%%%
 %% COMANDOS%%
 %%%%%%%%%%%%%
@@ -32,21 +34,6 @@
 %% FIN COMANDOS%%
 %%%%%%%%%%%%%%%%%
 
-\usepackage{lmodern,textcomp,ifthen,graphicx,enumitem}
-\usepackage[notes,
-            titlepage,
-            a4paper,
-            pagenumber,
-            sectionmark,
-            twoside,
-            fancysections]{polytechnique}
-\usepackage[colorlinks=true,
-            linkcolor=black,%bleu303,
-            filecolor=red,
-            urlcolor=bleu303,
-            bookmarks=true,
-            bookmarksopen=true]{hyperref}
-
 \title{Projet Simulation Numérique Aléatoire}
 \subtitle{Sûreté aérienne \\ MAP 474D}
 \author{Coordinateur~: Emmanuel \textsc{Gobet} \\
@@ -61,6 +48,7 @@
     \clearpage
 
     \section{Présentation du sujet}
+	%TODO: Write proyect introduction
 	
 	\subsection{Simulation des trajectoires} % (fold)
 	\label{sub:simulation_des_trajectoires}
