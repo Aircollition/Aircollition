@@ -87,9 +87,9 @@ while(q_alpha > S):
     
 proba = (1-alpha)**i * np.mean(phi(X)<S) # probability estimation with splitting
 
-print("Prob Sampling")
+print("Probability estimation with Splitting")
 print(proba)
-print("Real prob")
+print("Probability with Monte Carlo")
 print(p_emp_MC)
 print("rel error %")
 rel_err = (proba- p_emp_MC)/proba

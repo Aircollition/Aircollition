@@ -49,7 +49,12 @@ plt.savefig('Outputs/Script_5_2.pdf', bbox_inches='tight')
 
 # Probability of collition
 prob = np.mean(mindist < 0.1)
+var = np.var(mindist < 0.1)
+erreur = 1.96*np.sqrt(var - prob**2)/np.sqrt(Nsim)
+print("MC estimation")
 print(prob)
+print("Intervalle de conficance")
+print([prob-erreur, prob+erreur])
 
 ind = mindist < 0.1
 

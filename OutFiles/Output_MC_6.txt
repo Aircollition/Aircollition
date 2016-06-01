@@ -1,0 +1,23 @@
+Distance entre avions : 6.0 
+Nombre de simulations : 100000 
+Prob MC: 0.00011 ; Error : 6.50022704711e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.00011 ; Error : 6.50022704711e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.0001 ; Error : 6.19775430297e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.00011 ; Error : 6.50022704711e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.00017 ; Error : 8.08060008762e-05 
+Prob MC: 0.00012 ; Error : 6.7892317751e-05 
+Prob MC: 0.00014 ; Error : 7.33313510471e-05 
+Prob MC: 8e-05 ; Error : 5.54349541138e-05 
+Prob MC: 0.00014 ; Error : 7.33313510471e-05 
+Prob MC: 0.00022 ; Error : 9.19220357999e-05 
+Prob MC: 8e-05 ; Error : 5.54349541138e-05 
+Prob MC: 0.00013 ; Error : 7.06642113775e-05 
+Prob MC: 7e-05 ; Error : 5.18549106797e-05 
+Prob MC: 0.0001 ; Error : 6.19775430297e-05 
+Real value : 0.0001505329451454429

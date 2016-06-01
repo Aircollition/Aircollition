@@ -8,6 +8,7 @@ Created on Tue May 17 20:01:37 2016
 import numpy as np
 import numpy.linalg as npl
 import matplotlib.pyplot as plt
+from scipy.stats import mvn
 
 
 def func(U, epsilon):
@@ -40,7 +41,7 @@ C = []
 D = []
 E = []
 F = []
-for distance in np.linspace(0, 20, 20):
+for distance in np.linspace(0, 8, 20):
     # Simulation des vecteurs gaussiens
     mean = distance * np.ones((npoint,), dtype = float)
     Diff = np.random.multivariate_normal(mean, cov, size=Nsim)
@@ -59,7 +60,8 @@ for distance in np.linspace(0, 20, 20):
     Z = []
     Si = np.linspace(-0, -distance, 20)
     for dec in Si:
-        delta = dec * np.ones(npoint)
+        #delta = dec * np.ones(npoint)
+        delta = dec * np.linspace(0,1,npoint)
         
         L = -np.dot(np.dot(aux, inv), delta) - np.dot(np.dot(delta.T, inv), delta)/2
         
@@ -94,25 +96,35 @@ for distance in np.linspace(0, 20, 20):
     D.append(erreur_emp_IS)
     F.append(var_emp_IS)
 
+low = epsilon * np.ones(npoint)
+upp = 100 * np.ones(npoint)
+P = []
+for distance in np.linspace(0,8,100):
+    mean = distance * np.ones(npoint)
+    p,i = mvn.mvnun(low,upp,mean,cov)
+    P.append(1-p)
+
+
 plt.figure()
-plt.semilogy(np.linspace(0, 20, 20), A, 'rx', label = 'MC')
-plt.semilogy(np.linspace(0, 20, 20), C, 'b.', label ='IS')
+plt.semilogy(np.linspace(0, 8, 20), A, 'rx', label = 'MC')
+plt.semilogy(np.linspace(0, 8, 20), C, 'b.', label ='IS')
+plt.semilogy(np.linspace(0, 8, 100), P, 'k', label ='num')
 plt.xlabel("Separation distance")
 plt.ylabel("Probability")
 plt.legend()
 plt.savefig('Outputs/Script_8_ISmc_1.pdf', bbox_inches='tight')
 
 plt.figure()
-plt.semilogy(np.linspace(0, 20, 20), B, 'rx', label = 'MC')
-plt.semilogy(np.linspace(0, 20, 20), D, 'b.', label = 'IS')
+plt.semilogy(np.linspace(0, 8, 20), B, 'rx', label = 'MC')
+plt.semilogy(np.linspace(0, 8, 20), D, 'b.', label = 'IS')
 plt.xlabel("Separation distance")
 plt.ylabel("Estimation Error (95%)")
 plt.legend()
 plt.savefig('Outputs/Script_8_ISmc_2.pdf', bbox_inches='tight')
 
 plt.figure()
-plt.semilogy(np.linspace(0, 20, 20), E, 'rx', label = 'MC')
-plt.semilogy(np.linspace(0, 20, 20), F, 'b.', label = 'IS')
+plt.semilogy(np.linspace(0, 10, 20), E, 'rx', label = 'MC')
+plt.semilogy(np.linspace(0, 10, 20), F, 'b.', label = 'IS')
 plt.xlabel("Separation distance")
 plt.ylabel("Variance")
 plt.legend()
