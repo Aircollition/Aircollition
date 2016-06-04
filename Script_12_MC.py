@@ -2,6 +2,7 @@
 import numpy as np
 from scipy.linalg import toeplitz
 from scipy.stats import mvn
+import decimal
 
 
 
@@ -55,19 +56,19 @@ def MC(distance, Nsim, npoint):
     erreur_MC = 1.96*np.sqrt(p_emp_MC*(1-p_emp_MC)/Nsim) 
     return (p_emp_MC, erreur_MC)
 
-Nsim = 10**5
 npoint = 20
 counter = 0
 
-for distance in np.linspace(1, 6, 6):
+for distance in np.linspace(1, 8, 8):
     counter = counter+1
     text_file = open("OutFiles/Output_MC_%s.txt" % counter, "w")
     text_file.write("Distance entre avions : %s \n" % distance)
-    text_file.write("Nombre de simulations : %s \n" % Nsim)
+    text_file.write("Probability MC, Error, Rel. Error, N \n")
     
-    for i in range(20):
-        prob, err = MC(distance, Nsim, npoint)
-        text_file.write("Prob MC: %s ; Error : %s \n" % (prob, err))
+    for Nsim in [100, 1000, 100000]:
+        for i in range(20):
+            prob, err = MC(distance, Nsim, npoint)
+            text_file.write("%s, %.2E, %s, %s \n" % (prob, decimal.Decimal(err), 100*err/prob, Nsim))
     
     low = 0.1 * np.ones(npoint)
     upp = 100 * np.ones(npoint)

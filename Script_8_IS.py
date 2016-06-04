@@ -16,7 +16,7 @@ def func(U, epsilon):
     ind = np.any(U < epsilon, axis = 1)
     return ind
 
-distance =10.0 # distance(nmi)
+distance =4.0 # distance(nmi)
 print("Distance entre avions")
 print(distance)
 
@@ -61,14 +61,15 @@ aux = Diff - mean
 X = []
 Y = []
 Z = []
-Si = np.linspace(-0, -distance, 100)
+Si = np.linspace(-0, -distance, 20)
 
 ## Look for the best decentrage (in terms of error)
 for dec in Si:
     a = dec * np.linspace(0,1,npoint/2)
     b = dec * np.linspace(1,0,npoint/2)
-    #delta = dec * np.linspace(0,1,npoint)
     delta = np.concatenate((a,b))
+    
+    #delta = dec * np.linspace(0,1,npoint)
     
     L = -np.dot(np.dot(aux, inv), delta) - np.dot(np.dot(delta.T, inv), delta)/2
     

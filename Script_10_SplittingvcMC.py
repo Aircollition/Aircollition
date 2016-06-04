@@ -86,6 +86,7 @@ for distance in np.linspace(0, dmax, 20):
     B.append(proba)
 
 plt.figure()
+plt.grid(True)
 plt.semilogy(np.linspace(0, dmax, 20), A, 'rx', label = 'MC')
 plt.semilogy(np.linspace(0, dmax, 20), B, 'b.', label ='Splitting')
 plt.xlabel("Separation distance")

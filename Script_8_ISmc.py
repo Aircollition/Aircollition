@@ -106,6 +106,7 @@ for distance in np.linspace(0,8,100):
 
 
 plt.figure()
+plt.grid(True)
 plt.semilogy(np.linspace(0, 8, 20), A, 'rx', label = 'MC')
 plt.semilogy(np.linspace(0, 8, 20), C, 'b.', label ='IS')
 plt.semilogy(np.linspace(0, 8, 100), P, 'k', label ='num')
@@ -115,6 +116,7 @@ plt.legend()
 plt.savefig('Outputs/Script_8_ISmc_1.pdf', bbox_inches='tight')
 
 plt.figure()
+plt.grid(True)
 plt.semilogy(np.linspace(0, 8, 20), B, 'rx', label = 'MC')
 plt.semilogy(np.linspace(0, 8, 20), D, 'b.', label = 'IS')
 plt.xlabel("Separation distance")
@@ -123,6 +125,7 @@ plt.legend()
 plt.savefig('Outputs/Script_8_ISmc_2.pdf', bbox_inches='tight')
 
 plt.figure()
+plt.grid(True)
 plt.semilogy(np.linspace(0, 10, 20), E, 'rx', label = 'MC')
 plt.semilogy(np.linspace(0, 10, 20), F, 'b.', label = 'IS')
 plt.xlabel("Separation distance")
