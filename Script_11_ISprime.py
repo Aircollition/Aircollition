@@ -96,7 +96,7 @@ npoint = 20
 
 for distance in np.linspace(4, 10, 4):
     for Nsim in [100, 1000, 100000]:
-        text_file = open("OutFiles/Output_IS_linear_%s_%s.txt" % (distance,Nsim), "w")
+        text_file = open("OutFiles/Output_IS_linear_%s_%s.csv" % (distance,Nsim), "w")
         text_file.write("Distance entre avions : %s \n" % distance)
         text_file.write("Nombre de simulations : %s \n" % Nsim)
         text_file.write("Distance, Probability, Error, Relative error, mu \n \n")

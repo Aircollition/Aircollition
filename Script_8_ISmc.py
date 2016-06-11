@@ -9,6 +9,7 @@ import numpy as np
 import numpy.linalg as npl
 import matplotlib.pyplot as plt
 from scipy.stats import mvn
+from LaTeXPy import latexify
 
 
 def func(U, epsilon):
@@ -104,7 +105,7 @@ for distance in np.linspace(0,8,100):
     p,i = mvn.mvnun(low,upp,mean,cov)
     P.append(1-p)
 
-
+latexify()
 plt.figure()
 plt.grid(True)
 plt.semilogy(np.linspace(0, 8, 20), A, 'rx', label = 'MC')
@@ -120,7 +121,7 @@ plt.grid(True)
 plt.semilogy(np.linspace(0, 8, 20), B, 'rx', label = 'MC')
 plt.semilogy(np.linspace(0, 8, 20), D, 'b.', label = 'IS')
 plt.xlabel("Separation distance")
-plt.ylabel("Estimation Error (95%)")
+plt.ylabel("Estimation Error (95\%)")
 plt.legend()
 plt.savefig('Outputs/Script_8_ISmc_2.pdf', bbox_inches='tight')
 

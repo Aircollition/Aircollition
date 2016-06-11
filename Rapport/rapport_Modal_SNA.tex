@@ -1,11 +1,10 @@
 \documentclass[a4paper, 12pt,twoside]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb,noconfigs]{babel}
-
-\usepackage{lmodern,textcomp,ifthen,graphicx,enumitem,amsmath,amsfonts,booktabs}
-\numberwithin{equation}{subsection}
 \usepackage[font=small,labelfont=bf]{caption}
-\usepackage{csvsimple}
+\usepackage{lmodern,textcomp,ifthen,graphicx,enumitem,amsmath,amsfonts,booktabs,csvsimple}
+
+\numberwithin{equation}{subsection}
 \renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
 \renewcommand{\thetable}{\arabic{section}.\arabic{table}}
 
@@ -60,23 +59,9 @@
     \maketitle
     \renewcommand{\baselinestretch}{1.1}
     \setlength{\parskip}{0.5em}
+	
     \tableofcontents
     \clearpage
-	
-	\section{Remerciements} % (fold)
-	\label{sec:remerciements}
-	%:TODO: Adaptar al caso...
-	Je tiens à remercier toutes les personnes qui ont contribué dans cet projet et qui m'ont aidé lors de la rédaction de ce rapport.
-
-	Tout d'abord, j'adresse mes remerciements à mon professeur, Mr Joseph X de l'Université Y qui m'a beaucoup aidé dans ma recherche de stage et m'a permis de postuler dans cette entreprise. Son écoute et ses conseils m'ont permis de cibler mes candidatures, et de trouver ce stage qui était en totale adéquation avec mes attentes.
-
-	Je tiens à remercier vivement mon maitre de stage, Mr Gabriel X, responsable du service Y au sein de l'entreprise F, pour son accueil, le temps passé ensemble et le partage de son expertise au quotidien. Grâce aussi à sa confiance j'ai pu m'accomplir totalement dans mes missions. Il fut d'une aide précieuse dans les moments les plus délicats.
-
-	Je remercie également toute l'équipe E pour leur accueil, leur esprit d'équipe et en particulier Mr DDDD, qui m'a beaucoup aidé à comprendre les problématiques d'achats sécurisés...
-
-	Enfin, je tiens à remercier toutes les personnes qui m'ont conseillé et relu lors de la rédaction de ce rapport de stage : ma famille, mon amie Julie B camarade de promotion.
-	\clearpage
-	% section remerciements (end)
 	
     \section{Présentation du sujet} % (fold)
     \label{sec:presentation_du_sujet}
@@ -86,48 +71,50 @@
 	
 	Le nombre d'avions circulant dans le ciel est devenu considérable, un avion décolle toutes les secondes dans le monde. En moyenne nous avons 80.000 vols par jour, soit près de 29.200.000 vols par an. En 2020 on prévoit 200 millions de vols commerciaux par an soit 6,3 vols par seconde. Le site web \href{https://www.flightradar24.com}{flightradar24} permet de voir en temps réel les avions sur une carte comme montre la Figure \ref{fig:Vols}. La bonne gestion du trafic aérien (ATM en anglais) est devenu primordial pour éviter le risque aérien.
 	
-	Il existent plusieurs risques comme la foudre, panne de moteur, collision avec des oiseaux, fatigue du materiel entre autres. Dans cet project nous nous concentrons en mesurer la probabilité de collision entre deux avions. Nous souhaitons qu'elle soit faible pour être d'accord avec la règlementation, elle est édicte par L'Organisation de l'aviation civile internationale (OACI).
+	Il existent plusieurs risques comme la foudre, panne de moteur, collision avec des oiseaux, fatigue du matériel entre autres. Dans cet projet nous nous concentrons en mesurer la probabilité de collision entre deux avions. Nous souhaitons qu'elle soit faible pour être d'accord avec la réglementation, elle est édicté par L'organisation de l'aviation civile internationale (OACI).
 	
-	Pour minimiser le risque de collition il es obligatoire de mantenir une distance minimale entre avions quand les avions sont en dessous on est dans une situation de risque. Cette tâche est guarantie par le contrôle de circulation aérienne (ATC en anglais), elle est chargé de répartir les vols entre aéroports et moments de la journé. Néanmoins cette tâche n'est pas facile, les trajectoires des avions ne sont pas déterministes car elles sont soumises à des aléas comme le vent, perturbation de pilotage et des érreurs de mesure qui rendent la collision possible.
+	Pour minimiser le risque de collision il est obligatoire de maintenir une distance minimale entre avions quand les avions sont en dessous on est dans une situation de risque. Cette tâche est garantie par le contrôle de circulation aérienne (ATC en anglais), elle est chargé de répartir les vols entre aéroports et moments de la journée. Néanmoins cette tâche n'est pas facile, les trajectoires des avions ne sont pas déterministes car elles sont soumises à des aléas comme le vent, perturbation de pilotage et des erreurs de mesure qui rendent la collision possible.
 	
 	\begin{figure}[htbp]
 		\centering
-			\includegraphics[width=0.5\textwidth]{Images/VolsFrance}
+		\begin{minipage}[b]{0.5\textwidth}
+			\includegraphics[width=\textwidth]{Images/VolsFrance}
 		\caption{Vols en temps réel}
 		\label{fig:Vols}
+		\end{minipage}
 	\end{figure}
 	
 	% subsection introduction (end)
 	
-	\subsection{Modelisation} % (fold)
+	\subsection{Modélisation} % (fold)
 	\label{sub:modelisation}
 	
-	Une route d'avion entre deux aéroports est effectué avec un plan de vol qui est divisé en points de passage (waypoints) à intervalle régulier (20 min). Le pilote doit suivre donc la trajectoire entre deux points de passage à chaque fois. Comme le vol est soumis au vent on doit considerer une modélisation aléatoire du processus.
+	Une route d'avion entre deux aéroports est effectué avec un plan de vol qui est divisé en points de passage (waypoints) à intervalle régulier (20 min). Le pilote doit suivre donc la trajectoire entre deux points de passage à chaque fois. Comme le vol est soumis au vent on doit considérer une modélisation aléatoire du processus. Dans tout le projet on utilise le système de mesure en nmi (1 nmi = 1.82 km).
 	
-	Dans la bibliographie la trajectoire est bien modelisé avec un process stochastique continu en temps qui est ajouté à les equations du vol (\cite{prandini2005probabilistic}). Dans cet projet on utilise la methode précedente.
+	Dans la bibliographie la trajectoire est bien modélisé avec un processus stochastique continu en temps qui est ajouté aux équations du vol (\cite{prandini2005probabilistic}). Dans cet projet on utilise la méthode précédente.
 	
-	Plus précisement on considère des trajectoires planes, le mouvement étant décrit par 
+	Plus précisément on considère des trajectoires planes, le mouvement étant décrit par 
 		\begin{align}
 			\mathrm d X_t &= v ~ \mathrm d t+\sigma_t ~ \mathrm d W_t
 		\end{align}
-ou $X_t$ répresent la position, $v$ la vitesse, $\sigma_t$ la variance et $W_t$ est un mouvement Brownian en deux dimentions. La trajectoire en chaque instant on la considère dans un repère local cntré, cet à dire la position est décomposé comme $X_t=(X_{a,t},X_{c,t})$ où $X_{a,t}$ est la composante along-track et $X_{c,t}$ est l'across-track. Donc l'équation de mouvement est:
+où $X_t$ représente la position, $v$ la vitesse, $\sigma_t$ la variance et $W_t$ est un mouvement Brownien en deux dimensions. La trajectoire en chaque instant on la considère dans un repère local centré, cet à dire la position est décomposé comme $X_t=(X_{a,t},X_{c,t})$ où $X_{a,t}$ est la composante along-track et $X_{c,t}$ est l'across-track. Donc l'équation de mouvement est :
 		\begin{align}
 			\mathrm d X_{a,t} &= v ~ \mathrm d t+\sigma_{a,t} ~ \mathrm d W_{a,t} \\
 			\mathrm d X_{c,t} &= \sigma_{c,t} ~ \mathrm d W_{c,t}
 		\end{align}
-Dans ce modèle pour des raisons de pilotage on considere que quand le temps augmente on a plus de certitude sur la composante cross track mais moins sur la along-track.
+Dans ce modèle pour des raisons de pilotage on considère que quand le temps augmente, on a plus de certitude sur la composante across-track mais moins sur l'along-track.
 \begin{align}
 	X_{a,t} &\sim \mathcal{N}(vt,(r_a t)^2) \\
 	X_{c,t} &\sim \mathcal{N}(0,\min(\sigma_c, (r_c t)^2))
 \end{align}
 	$r_a=0.25~ \mathrm{nmi min^{-1}}$ et $r_c=1/57~ \mathrm{nmi min^{-1}}$ sont facteurs fixes du modèle. Si on fait l'approximation 
 	$$\min(\sigma_c, (r_c t)^2) \approx \sigma_c^2 (1-e^{-2\frac{r_c}{\sigma_c}vt}) $$
-	On peut calculer $\sigma_{a,t}=r_a\sqrt{2t}$ et $\sigma_{c,t}=e^{-\frac{r_c}{\sigma_c}vt}\sqrt{2\sigma_c r_c v}$ avec Itô. On aussi une autre modelisation avec la matrice vriance/covariance pour ($t<s$):
+	On peut calculer $\sigma_{a,t}=r_a\sqrt{2t}$ et $\sigma_{c,t}=e^{-\frac{r_c}{\sigma_c}vt}\sqrt{2\sigma_c r_c v}$ avec Itô. On a aussi une autre modélisation avec la matrice variance/covariance pour ($t<s$):
 	\begin{align}
 		\mathbb{C}\mathrm{ov}(X_{a,t},X_{a,s}) &= r_a^2 t^2 \\
 		\mathbb{C}\mathrm{ov}(X_{c,t},X_{c,s}) &= \sigma_{c}^2 (1-e^{-2\frac{r_c}{\sigma_c}v(s-t)})e^{-\frac{r_c}{\sigma_c}v(s-t)}
 	\end{align}
-	Comme sugeré dans le sujet du projet. Ce modèle est connu comme processus d'Ornstein-Uhlenbeck car la composante cross-track devient deterministe (égal à zero) dans le temps.
+	Comme suggéré dans le sujet du projet. Ce modèle est connu comme processus d'Ornstein-Uhlenbeck car la composante across-track devient déterministe (égal à zéro) dans le temps.
 	Finalement juste noter que si on fait une rotation de $\theta$ degrés de notre trajectoire on doit multiplier chaque composante $X_t=(X_{a,t},X_{c,t})$ de notre processus par la matrice de rotation 
 	\begin{align}
 	R_{\theta} &= \left( \begin{array}{cc}
@@ -146,11 +133,11 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 	\subsection{Simulation} % (fold)
 	\label{sub:simulation}
 	
-	On considère une simulation de deux avions dans un même plan, on simule les trajectoires décrites en \ref{sub:modelisation} sur un horizon de temps de 20 minutes à une vitesse de 500 kt (926 km/h). On simule d'abord des trajectoires en parallèle et après des trajectoires qui se croissent. Les trajectoires sont discrètises uniformement avec 100 points sûr chaque trajectoire. On gardera les notations suivantes : 
+	On considère une simulation de deux avions dans un même plan, on simule les trajectoires décrites en \ref{sub:modelisation} sur un horizon de temps de 20 minutes à une vitesse de 500 kt (926 km/h). On simule d'abord des trajectoires en parallèle et après des trajectoires qui se croissent. Les trajectoires sont discrétisées uniformément avec 100 points sûr chaque trajectoire. On gardera les notations suivantes : 
 	\begin{itemize}
-		\item $d$ : dimention de discrétisation
+		\item $d$ : dimension de discrétisation
 		\item $\Sigma_a \in \mathbb{R}^{d \times d}$ : matrice de variance/covariance along-track
-		\item $\Sigma_c \in \mathbb{R}^{d \times d}$ : matrice de variance/covariance cross-track 
+		\item $\Sigma_c \in \mathbb{R}^{d \times d}$ : matrice de variance/covariance across-track 
 	\end{itemize}
 	on a donc :
 	\begin{align}
@@ -178,13 +165,13 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\end{array} 
 		\right] \right)
 	\end{align}
-	Nous sommes intéresés en estimer la probabilité de collision c'est à dire, la probabilité de que la distance entre les avions soit inferieure à un seuil prédefini $\epsilon$.
+	Nous sommes intéressés en estimer la probabilité de collision c'est-à-dire, la probabilité de que la distance entre les avions soit inférieure à un seuil prédéfini $\epsilon$.
 	\begin{subequations}
 	\begin{align}
 		\mathbb{P}\left(\exists i~|~ \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right)
 		&= \mathbb{P}\left(\bigcup_{i=1}^{d} \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon  \right)  \\
 		&= \mathbb{P}\left(\min_{1\leq i\leq d} \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right)  \\
-		&= 1-\mathbb{P}\left(\forall i~|~ \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right)
+		&= 1-\mathbb{P}\left(\forall i~|~ \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right) \label{eq:numerique}
 	\end{align}
 	\end{subequations}
 	
@@ -195,11 +182,11 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
     \clearpage
     
     \section{Résultats}
-	Les méthodes de calcul de probabilité sur des évènements rares étant vues en cours serant juste rappelés par son nom sauf pour des cas quand on fait une adaptation de la méthode.
+	Les méthodes de calcul de probabilité sur des évènements rares étant vues en cours seront juste rappelés par son nom sauf pour des cas quand on fait une adaptation de la méthode. Pour comparer les résultats dans le cas des avions en parallèle on a utilisé une méthode numérique pour approcher la probabilité, la méthode permet de calculer la cdf d'une gaussienne multidimensionnelle. Et pour le cas en parallèle quand, $r_a=0$ on calcule avec l'équation~\ref{eq:numerique} la probabilité de collision. La librairie utilisée est {\tt scipy.stats.mvn}.
 	
 	\subsection{Monte Carlo naïve} % (fold)
 	\label{sub:monte_carlo_naive}
-	On a fait une simulation Monte Carlo naïve pour le cas des trajectoires parallèles, une trajectoire type es montré dans la Figure \ref{fig:trajtype}. Nous avons simulé au total $10^5$ trajectoires et pour des raisons de amélioration de calcul et de simulation, nous avos decidé de simuler le processus de la difference des trajectoires $U=X^{(1)} - X^{(2)}$, dans la Figure \ref{fig:trajdiff}, on utiliserá cette figure comme référence après pour la méthode IS. Pour faire l'estimation de la probabilité de collision on utilise la fonction $\phi(U)=\mathbb{I}\left \{\min_{1\leq i \leq d} U_i \leq \epsilon \right \}$ et on calcule la probabilité de collision comme $\mathbb{E}[\phi(U)]$. L'estimation de probabilité faite avec Monte Carlo est montré dans la table \ref{tab:MC}.
+	On a fait une simulation Monte Carlo naïve pour le cas des trajectoires parallèles, une trajectoire type es montré dans la Figure \ref{fig:trajtype}. Nous avons simulé au total $10^5$ trajectoires et pour des raisons d'amélioration de calcul et de simulation, nous avons décidé de simuler le processus de la différence des trajectoires $U=X^{(1)} - X^{(2)}$, dans la Figure \ref{fig:trajdiff}, on utilisera cette figure comme référence après pour la méthode IS. Pour faire l'estimation de la probabilité de collision on utilise la fonction $\phi(U)=\mathbb{I}\left \{\min_{1\leq i \leq d} U_i \leq \epsilon \right \}$ et on calcule la probabilité de collision comme $\mathbb{E}[\phi(U)]$. L'estimation de probabilité faite avec Monte Carlo est montré dans la table \ref{tab:MC}.
 	
 	\begin{figure}[htbp]
 		\centering
@@ -224,28 +211,28 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\label{tab:MC}
 	\end{table}
 	
-	Dans la table \ref{tab:MC} sont representés les résultats de la méthode Monte Carlo naïve pour des distance entre 2 et 6 nmi. On a omis quelques résultats, notament quand la distance est de 6 nmi seulement avec $10^5$ simulations on pouvait arriver à des résultats non nuls. On a constaté aussi que pour $10^5$ simulations la méthode Monte Carlo marchait jusqu'à des distance de l'ordre de 6nmi. Cette méthode nous permet d'estimer des probabilités de l'ordre de $10^-5$.
+	Dans la table \ref{tab:MC} sont représentés les résultats de la méthode Monte Carlo naïve pour des distances entre 2 et 6 nmi. On a omis quelques résultats, notamment quand la distance est de 6 nmi seulement avec $10^5$ simulations on pouvait arriver à des résultats non nuls. On a constaté aussi que pour $10^5$ simulations la méthode Monte Carlo marchait jusqu'à des distances de l'ordre de 6nmi. Cette méthode nous permet d'estimer des probabilités de l'ordre de $10^-5$.
 	
-	En analisant la table \ref{tab:MC} on constate que la méthode de Monte Cralo marche bien pour des distances petites et que après on a besoin de un nombre plus grande de simulations. Neanmoins l'erreur relatif et le nombre de simulations ne sont pas linéairement liées, c'est à dire pour ameliorer 10 fois l'erreur relatif on a besoin de plus de 10 fois le nombre de simulations utilisés anterieurement.
+	En analysant la table \ref{tab:MC} on constate que la méthode de Monte Carlo marche bien pour des distances petites et qu'après on a besoin de un nombre plus grand de simulations. Néanmoins l'erreur relative et le nombre de simulations ne sont pas linéairement liées, c'est-à-dire pour améliorer 10 fois l'erreur relative on a besoin de plus de 10 fois le nombre de simulations utilisés antérieurement.
 	
-	Finalement avec les simulations Monte Carlo on a fait un histograme de la densité du minimum sur chaque trajectoire et un histograme de ça conditioné à l'évènement de collision dans les Figures \ref{fig:MChist1} et \ref{fig:MChist2}. Ces simulations sont faites à une distance de 4 nmi entre avions.
+	Finalement avec les simulations Monte Carlo on a fait un histogramme de la densité du minimum sur chaque trajectoire et un histogramme de ça conditionné à l'évènement de collision dans les Figures \ref{fig:MChist1} et \ref{fig:MChist2}. Ces simulations sont faites à une distance de 4 nmi entre avions.
 	
 	\begin{figure}[htbp]
 		\centering
 		\begin{minipage}[b]{\mylength}
 			\includegraphics[width=\textwidth]{Images/Script_5_4}
-			\caption{Histograme de la distance minimale}
+			\caption{Histogramme de la distance minimale}
 			\label{fig:MChist1}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{\mylength}
 			\includegraphics[width=\textwidth]{Images/Script_5_3}
-			\caption{Histograme de la distance minimale conditioné à la collision}
+			\caption{Histogramme de la distance minimale conditionné à la collision}
 			\label{fig:MChist2}
 		\end{minipage}
 	\end{figure}
 	
-	Dans la Figure \ref{fig:MChist1} on constate qu'il existe une grande majeurité ou le minimum se place à distance 4, celui-ci c'est le cas quand les trajectoires se eloignent l'un de l'autre au début de la simulation. On constate aussi une concentration au tour des distances entre 2 et 3.5 nmi, c'est à dire que ça c'est la distance minimale entre les deux. Finalement pour la forme de l'histogramme on pourrait dire que ça ressemble à une normale centré au tour de 2.5 et 3.0 et coupé au dela de 4, pour confirmer cette afirmation on pourrait faire un test $\chi^2$ ou  calculer la densité du minimum.Dans la Figure \ref{fig:MChist2} on constate que l'histogramme a une forme linéaire mais cependant on n'a pas suffisament d'obserbations pour confirmer cette affirmation.
+	Dans la Figure \ref{fig:MChist1} on constate qu'il existe une grande majorité ou le minimum se place à distance 4, celui-ci c'est le cas quand les trajectoires s'éloignent l'un de l'autre au début de la simulation. On constate aussi une concentration au tour des distances entre 2 et 3.5 nmi, c'est-à-dire que ça c'est la distance minimale entre les deux. Finalement pour la forme de l'histogramme on pourrait dire que ça ressemble à une normale centré au tour de 2.5 et 3.0 et coupé au-delà de 4, pour confirmer cette affirmation on pourrait faire un test $\chi^2$ ou  calculer la densité du minimum. Dans la Figure \ref{fig:MChist2} on constate que l'histogramme a une forme linéaire mais cependant on n'a pas suffisamment d'observations pour confirmer cette affirmation.
 	
 	Dans le cas de collision on a dessiné deux histogrammes avec le temps de collision et la position de collision dans les Figures \ref{fig:MChist3} et \ref{fig:MChist4}
 	
@@ -253,35 +240,35 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\centering
 		\begin{minipage}[b]{\mylength}
 			\includegraphics[width=\textwidth]{Images/Script_5_6}
-			\caption{Histograme du Temps de collision entre avions}
+			\caption{Histogramme du Temps de collision entre avions}
 			\label{fig:MChist3}
 		\end{minipage}
 		\hfill
 		\begin{minipage}[b]{\mylength}
 			\includegraphics[width=\textwidth]{Images/Script_5_7}
-			\caption{Histograme de la position de collision entre avions}
+			\caption{Histogramme de la position de collision entre avions}
 			\label{fig:MChist4}
 		\end{minipage}
 	\end{figure}
 	
-	Nous constatons que la collision tends à se produire au milieu de la trajectoire plus suivant et aussi pour la distance de collision, on constate une forme de \"toit\" dans cettes trajectoires, cette affirmation sera utilisé pour la méthode IS après.
+	Nous constatons que la collision tends à se produire au milieu de la trajectoire plus suivante et aussi pour la distance de collision, on constate une forme de \"toit\" dans ces trajectoires, cette affirmation sera utilisé pour la méthode IS après.
 	
 	% subsection monte_carlo_naive (end)
 	
 	\subsection{Importance Sampling} % (fold)
 	\label{sub:importance_sampling}
 	
-	Dans cette section on montre comment on a implementé le décentrage. Comme dans ce sujet on travail avec des gaussiennes, l'échantillonage d'importance restait valide et avec une formule assez simple comme on a vu en cours. Neanmoins le vecteur gaussienn multidimintionel $X\in \mathbb{R}^{2d}$ n'est pas centré et ça matrice de variance/covariance n'est pas l'identité. Pour résoudre cet problème on a fait deux solutions équivalents : 
+	Dans cette section on montre comment on a implémenté le décentrage. Comme dans ce problème on a des gaussiennes, l'échantillonnage d'importance restait valide et avec une formule assez simple comme on a vu en cours. Néanmoins le vecteur gaussien multidimensionnel $X\in \mathbb{R}^{2d}$ n'est pas centré et ça matrice de variance/covariance n'est pas l'identité. Pour résoudre cet problème on a fait deux solutions équivalentes : 
 	\begin{itemize}
-		\item Faire un decentrage adapté au processus
-		\item Normalicer le vecteur $X$ et appliquer la méthode du cours
+		\item Faire un décentrage adapté au processus
+		\item Normaliser le vecteur $X$ et appliquer la méthode du cours
 	\end{itemize}
-	Pour la première méthode on a pris à la base l'idée du decentrage:
+	Pour la première méthode on a pris à la base l'idée du décentrage :
 	\begin{align}
 		\mathbb{E}(f(X)) = \int f(x)p(x)~\mathrm{d}x &= \int f(x)\dfrac{p(x)}{q(x)}q(x)~\mathrm{d}x \nonumber \\
 		&= \mathbb{E}_{\mathbb{Q}}(f(X)\dfrac{p(x)}{q(x)})
 	\end{align}
-	où $\mathbb{Q}$ es ta nouvelle distribution. On appelle aussi $L(x)=\frac{p(x)}{q(x)}$ le ratio de vraisemblances. Pour une gaussienne multidimentionelle $X \sim \mathcal{N}(\boldsymbol\mu, \Sigma)$ on a :
+	où $\mathbb{Q}$ es ta nouvelle distribution. On appelle aussi $L(x)=\frac{p(x)}{q(x)}$ le ratio de vraisemblances. Pour une gaussienne multidimensionnelle $X \sim \mathcal{N}(\boldsymbol\mu, \Sigma)$ on a : 
 	\begin{align}
 		p(\boldsymbol x) =
 		\frac{1}{\sqrt{(2\pi)^{k}|\Sigma|}}
@@ -296,14 +283,14 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\right \}
 	\end{align}
 	
-	On rappelle que pour une Gaussienne standar le ratio vraisemblance est:
+	On rappelle que pour une Gaussienne standard le ratio vraisemblance est :
 	\begin{align}
 		L(\boldsymbol x) = \exp\left \{
 		\boldsymbol\theta^\mathrm{T} {\mathbf x}
 		-\frac{1}{2} \boldsymbol\theta^\mathrm{T} \boldsymbol\theta
 		\right \}
 	\end{align}
-	Pour la deuxième méthode la procedure pour normaliser une gaussienne $X \sim \mathcal{N}(\boldsymbol 0, \Sigma)$ c'est de la centrer justa avec une modification de la probabilité qu'on cherche trouver et deuxièmement trouver sa racine carré car si on a $CC^{\mathrm{T}}=\Sigma$ alors pour une gausienne stardard $G$ on a : $CG \sim \mathcal{N} (\boldsymbol 0, C C^{\mathrm{T}})$ donc on peut simuler la variable aléatoire $X$ avec $CG$ et la formule :
+	Pour la deuxième méthode la procédure pour normaliser une gaussienne $X \sim \mathcal{N}(\boldsymbol 0, \Sigma)$ c'est de la centrer juste avec une modification de la probabilité qu'on cherche trouver et deuxièmement trouver sa racine carrée car si on a $CC^{\mathrm{T}}=\Sigma$ alors pour une gaussienne standard $G$ on a : $CG \sim \mathcal{N} (\boldsymbol 0, C C^{\mathrm{T}})$ donc on peut simuler la variable aléatoire $X$ avec $CG$ et la formule :
 	\begin{align}
 		\mathbb{E}(f(X)) = \mathbb{E}(f(CG)) = 
 		\mathbb{E}(
@@ -311,7 +298,7 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		e^{{\boldsymbol \theta}.G
 		 -\frac{1}{2} \boldsymbol\theta^\mathrm{T} \boldsymbol\theta})
 	\end{align}
-	Finalement pour la simulation il nous reste à regler le paramètre $\boldsymbol \theta \in \mathbb{R}^{d}$, cet paramètre est très important pour une bonne estimation pouvant amener à des grands erreur en cas d'être mal choisi. On a adopté trois méthodes pour le choix de $\boldsymbol \theta$ : un décalege constante, linéaire et toit. On a choisi ces trois décalages car le première était le plus simple à faire mais pas le meilleur, l'est autre pour des raisons de collision d'après les Figures Figure~\ref{fig:trajtype} et Figure~\ref{fig:MChist3} on voit que la collision se produit pas au début de la trajectoire mais au milieu ou à la fin. Finalement ces trois méthodes sont implementés adaptativement, c'est à dire pour chaque type de décalage on fait differents tailles de décalage. Par exemple on fait des décalages du type toit avec une variation de l'auteur du toit entre 0 et la distance entre avions.
+	Finalement pour la simulation il nous reste à régler le paramètre $\boldsymbol \theta \in \mathbb{R}^{d}$, cet paramètre est très important pour une bonne estimation pouvant amener à des grands erreur en cas d'être mal choisi. On a adopté trois méthodes pour le choix de $\boldsymbol \theta$ : un décalage constant, linéaire et toit. On a choisi ces trois décalages car le premier était le plus simple à faire mais pas le meilleur, l'est autre pour des raisons de collision d'après les Figures Figure~\ref{fig:trajtype} et Figure~\ref{fig:MChist3} on voit que la collision se produit pas au début de la trajectoire mais au milieu ou à la fin. Finalement ces trois méthodes sont implémentées de manière adaptative, c'est-à-dire pour chaque type de décalage on fait différents tailles de décalage et on choisit celui avec la plus petite variance. Par exemple on fait des décalages du type toit avec une variation de l'auteur du toit entre 0 et la distance entre avions.
 	
 	Les performances de la méthode Monte Carlo, Importance Sampling sont montrés dans la Figure~\ref{fig:ISmc} avec l'erreur dans la Figure~\ref{fig:ISmcErr}
 	
@@ -330,7 +317,7 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\end{minipage}
 	\end{figure}
 	
-	Les probabilités estimés sont montrés dans les Tables~\ref{tab:ISconst}~\ref{tab:ISlin} et \ref{tab:IStoit}
+	Les probabilités estimées sont montrés dans les Tables~\ref{tab:ISconst}~\ref{tab:ISlin} et \ref{tab:IStoit}
 	
 	\begin{table}[htbp]
 		\begin{center}
@@ -344,7 +331,7 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\begin{center}
 			\csvautobooktabular{Tables/ISlin.csv}
 		\end{center}
-		\caption{Estimation avec IS type linear de la probabilité de collision}
+		\caption{Estimation avec IS type linéaire de la probabilité de collision}
 		\label{tab:ISlin}
 	\end{table}
 	
@@ -356,11 +343,11 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\label{tab:IStoit}
 	\end{table}
 	
-	Dans la Table~\ref{tab:ISconst} on voit que ce n'est pas une bonne choix pour $\boldsymbol \theta$ car l'erreur relatif reste grand même quand on augmente le nombre de simulations. Par contre les estimations dans les Tables~\ref{tab:ISlin} et \ref{tab:IStoit} on obtient des bonnes approximations pour la probabilité de collision avec un erreur relatif qui reste petit. On constate aussi que quand la probabilité à estimer devient plus petite, les erreurs relatives sont plus grands.
+	Dans la Table~\ref{tab:ISconst} on voit que ce n'est pas une bonne choix pour $\boldsymbol \theta$ car l'erreur relative reste grand même quand on augmente le nombre de simulations. Par contre les estimations dans les Tables~\ref{tab:ISlin} et \ref{tab:IStoit} on obtient des bonnes approximations pour la probabilité de collision avec une erreur relative qui reste petit. On constate aussi que quand la probabilité à estimer devient plus petite, les erreurs relatives sont plus grands.
 	
-	Dans les Tables on a aussi afiché le décalage $\mu$ choisi adaptativement, dans les tables on a afiché un de plusieurs runs de la méthode, on constate que la choix de $\mu$ varie et dépends de chaque simulation, mais cependant qu'elle est au tour de moins la distance entre avions et donc si on voulait une méthode robuste pour calculer la probabilité on choisirait $\mu=-\mathrm{dist}$ car elle est souvent choisie et donne des erreurs raisonables.
-	%TODO: verifier "runs" et dist
-	Avec la méthode obtenue par IS on a fait un histograme de la densité de probabilité, c'est à dire, on calculait pour chaque $\epsilon \in [0,4]$ la probabilité de collision ce qui nous donne la fonction de répartition et après on fait une dérivé discretisé pour obtenir la densite de probabilité. Les graphes sont afichés dans les Figures~\ref{fig:Dens1} et \ref{fig:Dens2}
+	Dans les Tables on a aussi affiché le décalage $\mu$ choisi de manière adaptative, dans les tables on a affiché un de plusieurs exécutions de la méthode, on constate que le choix de $\mu$ varie et dépends de chaque simulation, mais cependant qu'elle est au tour de moins la distance entre avions et donc si on voulait une méthode robuste pour calculer la probabilité on choisirait $\mu=-\mathrm{l}$ car elle est souvent choisie et donne des erreurs raisonnables.
+	
+	Avec la méthode obtenue par IS on a fait un histogramme de la densité de probabilité, c'est-à-dire, on calculait pour chaque $\epsilon \in [0,4]$ la probabilité de collision ce qui nous donne la fonction de répartition et après on fait un dérivé discrétisé pour obtenir la densité de probabilité. Les graphes sont affichés dans les Figures~\ref{fig:Dens1} et \ref{fig:Dens2}
 	
 	\begin{figure}[htbp]
 		\centering
@@ -377,15 +364,41 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\end{minipage}
 	\end{figure}
 	
-	Ces deux Figures sont faites pour une simulation à distance 4. La Figure~\ref{fig:Dens1} est faite avec $10^5$ simulations pour chaque $\epsilon \in [0,4]$ avec une division de 20 points, pour des raisons de vitesse. et la Figure~\ref{fig:Dens2} est faite avec 100 points. On constate une concordance entre le méthode numérique et la méthode IS.
+	Ces deux Figures sont faites pour une simulation à distance 4. La Figure~\ref{fig:Dens1} est faite avec $10^5$ simulations pour chaque $\epsilon \in [0,4]$ avec une division de 20 points, pour des raisons de vitesse, la Figure~\ref{fig:Dens2} est faite avec 100 points. On constate une concordance entre la méthode numérique et la méthode IS.
 	
 	% subsection importance_sampling (end)
 	
 	\subsection{Méthode de Splitting} % (fold)
 	\label{sub:methode_de_splitting}
-	Dans cette section on implemente la méthode de splitting pour le calcul de %TODO: completar aqui
+	Dans cette section on implémente la méthode de splitting pour le calcul de la probabilité de collision entre avions. On souhaite estimer $\mathbb{P}[\varphi(U)\leq \epsilon]$ avec $\varphi(U)= \min_{1\leq i \leq d} U_i \leq \epsilon$. La méthode de splitting qu'on a implémentée est adaptative, c'est-à-dire, les ensembles intermédiaires dont on calcule la probabilité sont choisis de façon à avoir une probabilité constante prédéfinie par l'utilisateur égal à $\alpha$. On rappelle que pour la méthode de splitting on fait : $E = A_0 \supset A_1 \supset \ldots \supset A_{m-1} \supset A_m = A$ où $A_k = \left\{x~:~\varphi(x)\leq \epsilon_k\right\}$ et on calcule 
+	\begin{align}
+		\mathbb{P}(A) &= \mathbb{P}(A_1) \prod _{k=2}^{m} \mathbb{P}(A_{k}|A_{k-1})
+		\label{eq:splitting}
+	\end{align}
+	On choisit les $\epsilon_{k}$ de manière à avoir des probabilités semblables dans l'équation~\eqref{eq:splitting}. La méthode implémentée c'est la suivante :
+	\begin{enumerate}
+		\item Initialiser $U_0$ tel que 
+		\item Simuler $N$ échantillons $U_1,\ldots,U_N \sim \mathcal{N}(\boldsymbol \mu, \Sigma)$
+		\item Estimer les quantiles empiriques $q_{\alpha}$ et calculer $A_k=\left\{ x\in \mathbb{R}^d ~| \varphi(x) \leq q_{\alpha} \right\}$
+		\item Répéter les étapes (2)-(3) jusqu'à avoir 
+	\end{enumerate}
+	Finalement la probabilité à calculer est :  
+	\begin{align}
+		\mathbb{P}(A) &= \mathbb{P}(A_1) \Pi_{k=2}^{m} \mathbb{P}(A_{k}|A_{k-1}) \\
+		&= \alpha^{m-1} \times \dfrac{1}{N} \sum_{i=1}^{N} \mathbb{I}\left\{\varphi(X_i)>\epsilon_k \right\}
+		\label{eq:splittingAda}
+	\end{align}
+	On a choisi comme paramètre $\alpha=0.5$ et on a adapté le processus AR(1) vu en cours pour le cas multidimensionnel. C'est-à-dire on fait : 
+	\begin{align}
+		X_{i+1}^{k} &= 
+		\begin{cases}
+		      \rho X_i^{k} + \sqrt{1 - \rho^2} Y_i^{k}, & \text{si dans}\ g^{-1}(A_{k-1}) \\
+		      X_i^{k}, & \text{sinon}
+		\end{cases}
+	\end{align}
+	où les $(Y_i^k)$ sont i.i.d. de loi $\mathcal{N}(\boldsymbol 0, I_n)$. Pour le modèle on a choisis $\rho=0.5$ parce que permettait mieux résultats.
+	Les résultats de la méthode de splitting et sa comparaison avec Monte Carlo sont montrés dans la Figure~\ref{fig:Splitting}. Vu que pour la méthode de Splitting c'est difficile de trouver l'erreur, on affiche juste la probabilité dans la Figure~\ref{fig:Splitting} et dans la Table~\ref{tab:Splitting} on a fait la méthode de Splitting 23 fois pour obtenir une erreur au 95\%.
 	
-	On montre dans la Figure~\ref{fig:Splitting} la méthode de Splitting et le calcul par Monte Carlo de la probabilité de collision
 	\begin{figure}[htbp]
 		\centering
 		\begin{minipage}[b]{\mylength}
@@ -395,11 +408,76 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
 		\end{minipage}
 	\end{figure}
 	
+	Dans la Figure~\ref{fig:Splitting} on voit une bonne performance par rapport à Monte Carlo pour le calcul des probabilités faibles. Cependant on doit dire que la méthode de Splitting prend beaucoup plus de temps car on doit faire un nouveau échantillon chaque fois qu'on n'est pas dans $g^{-1}(A_{k-1})$ que pour des probabilités petites fais que la méthode de splitting prend plus de temps, aussi comme la méthode est adaptative, plus l'ordre de la probabilité est faible, plus le $m$ dans la méthode croît et donc la méthode fait plus des étapes.
+	
+	En analysant la table on voit que les estimations améliorent avec plus d'estimations mais en comparant la méthode de Splitting avec IS on trouve des erreurs plus grands et une convergence plus lente vers la probabilité réelle. On peut justifier ça parce que la méthode IS est plus adapté à la situation qu'on souhaite estimer.
+	
+	\begin{table}[htbp]
+		\begin{center}
+			\csvautobooktabular{Tables/Splitting.csv}
+		\end{center}
+		\caption{Estimation avec Splitting de la probabilité de collision}
+		\label{tab:Splitting}
+	\end{table}
+	
 	% subsection methode_de_splitting (end)
     
+	\subsection{Trajectoires Croisées} % (fold)
+	\label{sub:trajectoires_croisees}
+	
+	Dans cette partie on fait l'étude de la probabilité de collision dans le cas de deux trajectoires que se croissent comme on peut voir dans la Figure~\ref{fig:Croiss} on montre aussi la distance entre les avions dans la Figure~\ref{fig:dist} on peut voir que c'est une parabole. On essaie de calculer la proportion de trajectoires $U$ qui passent en dessous du seuil $\epsilon=0.1$. Le cas d'étude est constitué de deux trajectoires qui se croissent dans un angle de $60^{\circ}$. Pour avoir des probabilités raisonnables on a choisi une situation près d'un choc, mais avec un décalage.
+	
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[b]{\mylength}
+			\includegraphics[width=\textwidth]{Images/Script_6_1}
+			\caption{Exemple de trajectoire}
+			\label{fig:Croiss}
+		\end{minipage}
+		\begin{minipage}[b]{\mylength}
+			\includegraphics[width=\textwidth]{Images/Script_6_3}
+			\caption{Distance au cours du temps}
+			\label{fig:dist}
+		\end{minipage}
+	\end{figure}
+	
+	Pour obtenir un calcul de référence, on a aussi implémentée avec la méthode de Monte Carlo avec $10^5$ simulations et on a obtenu la probabilité estimative $6.3\times 10^{-4}$. Pour améliorer la performance de calcul de notre méthode IS on a fait un zoom près de la zone de choc car la probabilité de choc en dehors d'après les calculs de la Section~\ref{sub:methode_de_splitting} on sait que si la distance est plus grand que 8 nmi alors la probabilité est de l'ordre de $10^-8$ que pour notre cas on peut négliger. Le zoom aussi rend le calcul plus précis parce qu'on augmente la densité de points dans la trajectoire. Les résultats de la méthode IS sont affichés dans la Table~\ref{tab:Isobl}
+	
+	\begin{table}[htbp]
+		\begin{center}
+			\csvautobooktabular{Tables/ISoblique.csv}
+		\end{center}
+		\caption{Estimation avec IS de la probabilité de collision}
+		\label{tab:Isobl}
+	\end{table}
+	
+	On voit que la méthode es plus précise quand on augmente le nombre de simulations mais que l'erreur relative n'augmente pas au même rythme, avec $10^5$ simulations on arrive a des bons résultats avec une erreur relative petite.
+	
+	Pour cette expérience on a calculé aussi la densité et densité conditionné à la collision montrées dans les Figure~\ref{fig:dist1} et Figure~\ref{fig:dist2}
+	
+	\begin{figure}[htbp]
+		\centering
+		\begin{minipage}[b]{\mylength}
+			\includegraphics[width=\textwidth]{Images/Script_6_5}
+			\caption{Histogramme de la distance minimale}
+			\label{fig:dist1}
+		\end{minipage}
+		\begin{minipage}[b]{\mylength}
+			\includegraphics[width=\textwidth]{Images/Script_6_4}
+			\caption{Histogramme de la distance minimale conditionné à la collision}
+			\label{fig:dist2}
+		\end{minipage}
+	\end{figure}
+	
+	On observe un changement par rapport à la densité vue dans la Section~\ref{sub:monte_carlo_naive} en se penchant vers la gauche, on peut justifier ça parce que maintenant la distance minimale est plus petite que pour le cas en parallèle car on est près de la zone de choc. Pour la Figure~\ref{fig:dist2} on obtient des résultats similaires à ceux trouvés avant.
+	
+	% subsection trajectoires_croisees (end)
+	
     \clearpage
 
     \section{Conclusion}
+	
+	Pour la situation de collision d'avions on a implémentée deux méthodes qui s'adaptaient bien au calcul de la probabilité de collision. La méthode d'importance sampling était la mieux adapté au cas de gaussiennes multivariées. La méthode de Splitting a pu être adapté mais elle n'est pas suffisamment adapté pour avoir des bons erreurs relatives. Finalement, dans les résultats obtenus on peut conclure que si la distance minimale entre avions supérieure à 10 nmi dans tout moment alors la probabilité de collision sera inférieure à $10^-9$ qui va en accord avec la probabilité souhaitée. Aussi dans cet projet nous n'avons pas considéré le fait que les avions peuvent être à des différents hauteurs ce qui rendrait la probabilité encore plus petite.
 
 
     \begin{center}
@@ -417,7 +495,7 @@ Dans ce modèle pour des raisons de pilotage on considere que quand le temps aug
      \clearpage
         \section{Références bibliographiques}
         {
-        \renewcommand{\section}[2]{} % pour virer le titre "Références"
+        \renewcommand{\section}[2]{}
         \nocite{*}
         \bibliographystyle{alpha}
         \bibliography{rapport_Modal_SNA}

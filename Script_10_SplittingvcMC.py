@@ -1,6 +1,8 @@
 import numpy as np
 import numpy.random as npr
 import matplotlib.pyplot as plt
+from scipy.stats import mvn
+from LaTeXPy import latexify
 
 
 def func(U, epsilon):
@@ -85,10 +87,20 @@ for distance in np.linspace(0, dmax, 20):
     A.append(p_emp_MC)
     B.append(proba)
 
+low = epsilon * np.ones(npoint)
+upp = 100 * np.ones(npoint)
+P = []
+for distance in np.linspace(0,8,100):
+    mean = distance * np.ones(npoint)
+    p,i = mvn.mvnun(low,upp,mean,cov)
+    P.append(1-p)
+
+latexify()
 plt.figure()
 plt.grid(True)
 plt.semilogy(np.linspace(0, dmax, 20), A, 'rx', label = 'MC')
 plt.semilogy(np.linspace(0, dmax, 20), B, 'b.', label ='Splitting')
+plt.semilogy(np.linspace(0, 8, 100), P, 'k', label ='num')
 plt.xlabel("Separation distance")
 plt.ylabel("Probability")
 plt.legend()

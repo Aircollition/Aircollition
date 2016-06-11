@@ -10,6 +10,7 @@ import numpy.linalg as npl
 import AeroProcess as ap
 import matplotlib.pyplot as plt
 from scipy.stats import mvn
+from LaTeXPy import latexify
 
 
 Nsim = 10**5
@@ -33,6 +34,7 @@ for epsilon in x:
 R = np.asarray(R)
 P = R[1:] - R[:-1]
 
+latexify()
 plt.figure()
 plt.bar(x[1:], P, width = 4/99)
 plt.title("Density of collition")

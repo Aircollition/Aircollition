@@ -1,6 +1,7 @@
 import AeroProcess as ap
 import matplotlib.pyplot as plt
 import numpy as np
+from LaTeXPy import latexify
 
 """
 Plot of a two aircrafts paths, Montecarlo simulation 
@@ -16,12 +17,13 @@ A1x, A1y = ap.AircraftTraj(Nsim, npoint, Time = Time)
 A2x, A2y = ap.AircraftTraj(Nsim, npoint, Time = Time)
 A2y += distance
 
-
+latexify()
 plt.figure()
-plt.plot(A1x[0], A1y[0], 'b', lw = 2)
-plt.plot(A2x[0], A2y[0], 'r', lw = 2)
+plt.plot(A1x[0], A1y[0], 'b', lw = 2, label = 'Avion 1')
+plt.plot(A2x[0], A2y[0], 'r', lw = 2, label = 'Avion 2')
 
 plt.grid(True)
+plt.legend()
 plt.xlim([-20, 180])
 plt.ylim([-4, distance + 4])
 plt.xlabel("nmi")
@@ -43,7 +45,7 @@ timemin = np.argmin(currdist, axis = 1)
 plt.figure()
 plt.grid(True)
 plt.plot(np.linspace(0,Time, npoint), np.sqrt(currdist[0]))
-plt.title("Sep distance through time")
+#plt.title("Sep distance through time")
 plt.xlabel("time (min)")
 plt.ylabel("distance (nmi)")
 plt.savefig('Outputs/Script_5_2.pdf', bbox_inches='tight')
@@ -85,7 +87,7 @@ plt.figure()
 plt.grid(True)
 for i in range(10**3):
     plt.plot(np.linspace(0,Time, npoint), np.sqrt(currdist[i]))
-plt.title("Sep distance through time for several samples")
+#plt.title("Sep distance through time for several samples")
 plt.xlabel("time (min)")
 plt.ylabel("distance (nmi)")
 plt.savefig('Outputs/Script_5_5.pdf', bbox_inches='tight')

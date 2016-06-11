@@ -22,6 +22,12 @@ clean:
 
 cleanall:
 	rm -f *.log *.aux *.nav *.out *.snm *.toc $(FILE).pdf
+	
+correct: $(FILE).txt
+	aspell --lang=fr --mode=tex check $(FILE).tex
+
+text: $(FILE).tex
+	detex -t $(FILE).tex > $(FILE).txt
 
 .PHONY: all pdf edit view clean cleanall
 .SILENT: pdf

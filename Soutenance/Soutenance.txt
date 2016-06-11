@@ -1,0 +1,327 @@
+beamer 
+[utf8]inputenc
+[frenchb,noconfigs]babel
+lmodern,textcomp,ifthen,graphicx,enumitem,booktabs,csvsimple
+beamerx
+
+
+
+0.47
+
+	
+	
+	[Felipe García]Modal SNA  
+ Sûreté aérienne[Sûreté
+ aérienne]
+	[]Felipe García
+	
+		
+	
+	frame[t]Plan
+		frame
+	
+	
+	Introduction 
+	sec:introduction
+	
+	
+	frame[t]Collision entre Avions
+	Faits autour des avions : 
+	itemize
+	<+-> 80.000 vols par jour
+	<+-> Plusieurs risques
+	<+-> Collision entre Avions
+	itemize
+	
+	<1>figure[htbp]
+		minipage[b]0.5
+	Images/VolsFrance
+	
+	fig:Vols
+	minipage
+	figure
+	
+	
+	frame
+	
+	
+	Modélisation 
+	subsec:modelisation
+	
+	frame[t]Routes des Avions
+	itemize
+	<+-> Route divisé en waypoints
+	<+-> Composante aléatoire : le vent
+	<+-> Processus stochastique 
+	align*
+	d X_t &= v   d t+_t   d W_t
+	align*
+	
+	itemize
+	frame
+	
+	frame[t]Modélisation Aléatoire
+	itemize
+	<+->  Modélisation aléatoire 
+	align*
+	Cov(X_a,t,X_a,s) &= r_a^2 t^2 
+
+	Cov(X_c,t,X_c,s) &= _c^2 (1-e^-2r_c_cv(s-t))e^-r_c_cv(s-t)
+	align*
+	<+-> Connu comme processus d'Ornstein-Uhlenbeck
+	<+-> Le processus reste gaussien avec une rotation
+	
+	itemize
+	frame
+	
+	
+	
+	Simulation 
+	subsec:simulation
+	
+	frame[t]Modélisation des trajectoires
+	Méthode de modélisation.
+	itemize
+	<+-> Trajectoires discrétisées
+	<+-> On simule la différence des trajectoires 
+	<+-> On modélise des trajectoires en parallèle et croisées
+	itemize
+	frame
+	
+	frame[t]Probabilité de Collision
+	Estimer la probabilité de que la distance entre les avions soit inférieure à un seuil prédéfini .
+	subequations
+	align*
+	P(i   X^(1)_i - X^(2)_i _2 )
+	&= P(_i=1^d X^(1)_i - X^(2)_i _2 )  
+
+	&= P(_1id X^(1)_i - X^(2)_i _2 )  
+
+	&= 1-P(i   X^(1)_i - X^(2)_i _2 ) eq:numerique
+	align*
+	subequations
+	frame
+	
+	
+	
+	Résultats 
+	sec:resultats
+	
+	frame[t]Estimation des probabilités
+	itemize
+	<+-> Estimation avec les méthodes du cours
+	<+-> Vérification des résultats avec une méthode numérique 
+	<+-> Exemple de trajectoire 
+	itemize
+	<3>figure[htbp]
+	minipage[b]
+	Images/Script_5_1
+	
+	fig:trajtype
+	minipage
+	figure
+	frame
+	
+	
+	Monte Carlo naïve 
+	sub:monte_carlo_naive
+	
+	frame[t]Monte Carlo naïve
+	Estimation de  avec  et .
+	<2>table[htbp]
+	center
+	Tables/MonteCarlo.csv
+	center
+	
+	tab:MC
+	table
+	
+	frame
+	
+	frame[t]Distribution Conditionnelle
+	<1>figure[htbp]
+		minipage[b]0.9
+	Images/Script_5_4
+	
+	fig:MChist1
+	minipage
+	figure
+	<2>figure[htbp]
+		minipage[b]0.9
+	Images/Script_5_3
+	
+	fig:MChist2
+	minipage
+	fig:label
+	figure
+	frame
+	
+	
+	
+	Importance Sampling 
+	sub:importance_sampling
+	
+	frame[t]Importance Sampling
+	Implémentation du décentrage.
+	itemize
+	<+-> Faire un décentrage adapté au processus
+	align*
+	E(f(x)) &= E_Q(f(x) e^L(x)) 
+
+	L(x)& = 
+	^T^-1(x-)
+	-12^T^-1	
+	align*
+	<+-> Normaliser le vecteur 
+	align*
+	E(f(x)) = E(f(CG)) = 
+	E(
+	f(C(G+))
+	e^.G
+	 -12 ^T )
+	align*
+	<+-> Choix du 
+	<+-> Méthode adaptative
+	itemize
+	frame
+	
+	frame[t]Résultats
+	<1-2>Comparaison entre Importance Sampling Monte Carlo et la Méthode Numérique
+	<2>figure[htbp]
+		minipage[b]
+	Images/Script_8_ISmc_1
+	
+	fig:ISmc
+	minipage
+		minipage[b]
+	Images/Script_8_ISmc_2
+	
+	fig:ISmcErr
+	minipage
+	figure
+	<3>Calcul par méthode Constante
+	<3>table[htbp]
+	center
+	Tables/ISconst.csv
+	center
+	
+	tab:ISconst
+	table
+	<4>Calcul par méthode Linéaire
+	<4>table[htbp]
+	center
+	Tables/ISlin.csv
+	center
+	
+	tab:ISlin
+	table
+	<5>Calcul par méthode Toit
+	<5>table[htbp]
+	center
+	Tables/IStoit.csv
+	center
+	
+	tab:IStoit
+	table
+	frame
+	
+	frame[t]Distribution conditionnée
+	Simulation à distance 4 avec un échantillon de .
+	<2>figure[htbp]
+		minipage[b]0.9
+	Images/Script_14_2
+	
+	fig:Dens1
+	minipage
+	
+	figure
+	<3>figure[htbp]
+		minipage[b]0.9
+	Images/Script_14_1
+	
+	fig:Dens2
+	minipage
+	
+	fig:label
+	figure
+	frame
+	
+	
+
+	Méthode de Splitting 
+	sub:methode_de_splitting
+	frame[t]Méthode de Splitting
+	On souhaite estimer  avec  le plus petit élément de . On trouve une séquence  et on calcule 
+	align*
+	P[(U)] &= P((U)_1) _k=2^m P((U)_k(U)_k-1)
+	align*
+	itemize
+	<2-> Avoir les probabilités dans un même ordre
+	<3> Estimer les quantiles empiriques
+	itemize
+	frame
+	
+	
+	
+	Trajectoires Croisées 
+	sub:trajectoires_croisees
+	
+	frame[t]Trajectoires Croisées
+	Modélisation des trajectoires
+	<1-3>itemize
+	<+-> Rotation des trajectoires
+	<+-> Prendre la différence entre elles 
+	<+-> Estimer 
+	itemize
+	<4>figure[htbp]
+		minipage[b]0.9
+	Images/Script_6_1
+	
+	fig:Croiss
+	minipage
+	figure
+	frame
+	
+	frame[t]Importance Sampling
+	Résultats
+	<2>table[htbp]
+	center
+	Tables/ISoblique.csv
+	center
+	
+	tab:Isobl
+	table
+	frame
+	frame[t]Distribution Conditionnelle
+		<1>minipage[b]0.9
+	Images/Script_6_5
+	fig:dist1
+	minipage
+	<2>minipage[b]0.9
+	Images/Script_6_4
+	fig:dist2
+	minipage
+	frame
+	
+	
+	
+	
+	Conclusion 
+	sec:conclusion
+	
+	frame[t]Conclusion
+	itemize
+	<+-> Méthodes Implémentés
+	<+-> Résultats obtenus
+	<+-> Probabilité estimée
+	itemize
+	frame
+	
+	frame[c]Fin
+	center
+	Merci
+	center
+	frame
+	
+	
+document
