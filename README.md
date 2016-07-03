@@ -1,12 +1,14 @@
-#Air Collision
-Project in Python to simulate Aircraft collition
+#Air Collision (in progress...)
 
-Keywords: Aircraft collision, Stochastics Simulation, Ornstein-Uhlenbeck process, Monte Carlo estimation, Variance reduction methods.
+Project in Python to simulate Aircraft collision
+
+**Keywords**: Aircraft collision, Stochastic Simulation, Ornstein-Uhlenbeck process, Monte Carlo estimation, Variance reduction methods.
 
 ## Introduction
 The number of airplanes currently circulating has became considerable. Just by now one aircraft takes off every second, in total there's an average of 80 000 flights by day and in 2020 it is estimated to increase up to 200 millions of flights per year. Therefore preventing the aircraft collision is an important matter and it could be treated in different ways from flight plan designing to protocols to evade immediate collision. In this project we estimate the probability of collision in a two aircraft simulation
 
 ## Aircraft path simulation
+The Aircraft trajectories are simulated following the model in [4] 
 
 ##How to install the project
 Just execute the following lines of code:
