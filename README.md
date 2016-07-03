@@ -12,7 +12,7 @@ The airplane path is principally influenced by the wind, this brings an aleatory
 
 ![eq1](http://mathurl.com/jjjn23u.png)
 
-where $W_{a,t}$ and $W_{c,t}$ are normalized Brownian motions. To simulate the trajectories, the paths are discretized and the processus is simulated according to the Variance-covariance matrix (when $s <t$)
+where ![wa](http://mathurl.com/hehv6ge.png) and ![wc](http://mathurl.com/hwgbzto.png) are normalized Brownian motions. To simulate the trajectories, the paths are discretized and the processus is simulated according to the Variance-covariance matrix (when s < t)
 
 ![eq2](http://mathurl.com/zszj8xo.png)
 
