@@ -8,8 +8,21 @@ Project in Python to simulate Aircraft collision
 The number of airplanes currently circulating has became considerable. Just by now one aircraft takes off every second, in total there's an average of 80 000 flights by day and in 2020 it is estimated to increase up to 200 millions of flights per year. Therefore preventing the aircraft collision is an important matter and it could be treated in different ways from flight plan designing to protocols to evade immediate collision. In this project we estimate the probability of collision in a two aircraft simulation
 
 ## Aircraft path simulation
-The Aircraft trajectories are simulated following the model in [4] 
-
+The airplane path is principally influenced by the wind, this brings an aleatory factor in the flight model. The trajectories are modeled by an Ornstein-Uhlenbeck process according to [4]. the definition is the following: 
+		\begin{align}
+			\mathrm d X_{a,t} &= v ~ \mathrm d t+\sigma_{a,t} ~ \mathrm d W_{a,t} \\
+			\mathrm d X_{c,t} &= \sigma_{c,t} ~ \mathrm d W_{c,t}
+		\end{align}
+where $W_{a,t}$ and $W_{c,t}$ are normalized Brownian motions. To simulate the trajectories, the paths are discretized and the processus is simulated according to the Variance-covariance matrix (when $s <t$)
+	\begin{align}
+		\mathbb{C}\mathrm{ov}(X_{a,t},X_{a,s}) &= r_a^2 t^2 \\
+		\mathbb{C}\mathrm{ov}(X_{c,t},X_{c,s}) &= \sigma_{c}^2 (1-e^{-2\frac{r_c}{\sigma_c}v(s-t)})e^{-\frac{r_c}{\sigma_c}v(s-t)}.
+	\end{align}
+	The probability that we want to find is the following:
+	\begin{align}
+		\mathbb{P}\left(\exists i~|~ \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right)
+	\end{align}
+with $\epsilon$ a predefined minimal distance of collition, for example it could be taken as the total length of two airplane wings.
 ##How to install the project
 Just execute the following lines of code:
 
