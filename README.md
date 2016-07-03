@@ -16,7 +16,7 @@ where ![wa](http://mathurl.com/hehv6ge.png) and ![wc](http://mathurl.com/hwgbzto
 
 ![eq2](http://mathurl.com/zszj8xo.png)
 
-	The probability that we want to find is the following:
+The probability that we want to find is the following:
 	
 ![eq3](http://mathurl.com/jorpmr3.png)
 
