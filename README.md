@@ -9,11 +9,17 @@ The number of airplanes currently circulating has became considerable. Just by n
 
 ## Aircraft path simulation
 The airplane path is principally influenced by the wind, this brings an aleatory factor in the flight model. The trajectories are modeled by an Ornstein-Uhlenbeck process according to [4]. the definition is the following: 
+
 ![eq1](http://mathurl.com/jjjn23u.png)
+
 where $W_{a,t}$ and $W_{c,t}$ are normalized Brownian motions. To simulate the trajectories, the paths are discretized and the processus is simulated according to the Variance-covariance matrix (when $s <t$)
+
 ![eq2](http://mathurl.com/zszj8xo.png)
+
 	The probability that we want to find is the following:
+	
 ![eq3](http://mathurl.com/jorpmr3.png)
+
 with ![eq4](http://mathurl.com/zwmhcpl.png) a predefined minimal distance of collition, for example it could be taken as the total length of two airplane wings.
 ##How to install the project
 Just execute the following lines of code:
