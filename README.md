@@ -9,20 +9,12 @@ The number of airplanes currently circulating has became considerable. Just by n
 
 ## Aircraft path simulation
 The airplane path is principally influenced by the wind, this brings an aleatory factor in the flight model. The trajectories are modeled by an Ornstein-Uhlenbeck process according to [4]. the definition is the following: 
-		\begin{align}
-			\mathrm d X_{a,t} &= v ~ \mathrm d t+\sigma_{a,t} ~ \mathrm d W_{a,t} \\
-			\mathrm d X_{c,t} &= \sigma_{c,t} ~ \mathrm d W_{c,t}
-		\end{align}
+![eq1](http://mathurl.com/jjjn23u)
 where $W_{a,t}$ and $W_{c,t}$ are normalized Brownian motions. To simulate the trajectories, the paths are discretized and the processus is simulated according to the Variance-covariance matrix (when $s <t$)
-	\begin{align}
-		\mathbb{C}\mathrm{ov}(X_{a,t},X_{a,s}) &= r_a^2 t^2 \\
-		\mathbb{C}\mathrm{ov}(X_{c,t},X_{c,s}) &= \sigma_{c}^2 (1-e^{-2\frac{r_c}{\sigma_c}v(s-t)})e^{-\frac{r_c}{\sigma_c}v(s-t)}.
-	\end{align}
+![eq2](http://mathurl.com/zszj8xo)
 	The probability that we want to find is the following:
-	\begin{align}
-		\mathbb{P}\left(\exists i~|~ \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right)
-	\end{align}
-with $\epsilon$ a predefined minimal distance of collition, for example it could be taken as the total length of two airplane wings.
+![eq3](http://mathurl.com/jorpmr3)
+with ![eq4](http://mathurl.com/zwmhcpl) a predefined minimal distance of collition, for example it could be taken as the total length of two airplane wings.
 ##How to install the project
 Just execute the following lines of code:
 
