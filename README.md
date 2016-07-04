@@ -28,4 +28,4 @@ for each of the pdf files just do:
 [4] Prandini, Maria, and Oliver J. Watkins. *Probabilistic aircraft conflict detection*. HYBRIDGE, IST-2001 32460 (2005): 116-119.
 
 ##Licence
-MIT Licence, see `[LICENCE.md](https://github.com/Aircollition/Aircollition/blob/master/LICENSE.md)`
+MIT Licence, see the [`LICENCE.md`](https://github.com/Aircollition/Aircollition/blob/master/LICENSE.md) file.
