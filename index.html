@@ -20,7 +20,7 @@
 
     <section class="main-content">
       <h1>
-<a id="air-collision-in-progress" class="anchor" href="#air-collision-in-progress" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Air Collision (in progress...)</h1>
+<a id="air-collision" class="anchor" href="#air-collision" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Air Collision</h1>
 
 <p>Project in Python to simulate Aircraft collision</p>
 
@@ -34,28 +34,22 @@
 <h2>
 <a id="aircraft-path-simulation" class="anchor" href="#aircraft-path-simulation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aircraft path simulation</h2>
 
-<p>The airplane path is principally influenced by the wind, this brings an aleatory factor in the flight model. The trajectories are modeled by an Ornstein-Uhlenbeck process according to [4]. the definition is the following: </p>
-
-<p><img src="http://mathurl.com/jjjn23u.png" alt="eq1"></p>
-
-<p>where <img src="http://mathurl.com/hehv6ge.png" alt="wa"> and <img src="http://mathurl.com/hwgbzto.png" alt="wc"> are normalized Brownian motions. To simulate the trajectories, the paths are discretized and the processus is simulated according to the Variance-covariance matrix (when s &lt; t)</p>
-
-<p><img src="http://mathurl.com/zszj8xo.png" alt="eq2"></p>
-
-<p>The probability that we want to find is the following:</p>
-
-<p><img src="http://mathurl.com/jorpmr3.png" alt="eq3"></p>
-
-<p>with <img src="http://mathurl.com/zwmhcpl.png" alt="eq4"> a predefined minimal distance of collition, for example it could be taken as the total length of two airplane wings.</p>
+<p>The airplane path is principally influenced by the wind, this brings an aleatory factor in the flight model. The trajectories are modeled by an Ornstein-Uhlenbeck process according to [4]. More on the model can be found in the report (in french) and in the presentation (in french too). The goal is to estimate the probability of collision of two planes, for that the trajectories are simulated and using variance-reduction methods the probability of collision is calculated.</p>
 
 <h2>
 <a id="how-to-install-the-project" class="anchor" href="#how-to-install-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to install the project</h2>
 
-<p>Just execute the following lines of code:</p>
+<p>To test any of the python snippets just do:</p>
 
-<pre><code>make project
-ipython graphs
+<pre><code>python file.py
 </code></pre>
+
+<p>for each of the pdf files in the directories Presentation and Report just do:</p>
+
+<pre><code>make pdf
+</code></pre>
+
+<p>You should have LaTeX and Python installed, on how to install see <a href="https://latex-project.org/ftp.html">here for LaTeX</a> and <a href="http://docs.python-guide.org/en/latest/starting/install/win/">here for python</a>.</p>
 
 <h2>
 <a id="references" class="anchor" href="#references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>References</h2>
@@ -67,6 +61,11 @@ ipython graphs
 <p>[3] Paielli, Russell A., and Heinz Erzberger. <em>Conflict probability for free flight</em>. Journal of Guidance, Control, and Dynamics 20.3 (1997): 588-596.</p>
 
 <p>[4] Prandini, Maria, and Oliver J. Watkins. <em>Probabilistic aircraft conflict detection</em>. HYBRIDGE, IST-2001 32460 (2005): 116-119.</p>
+
+<h2>
+<a id="licence" class="anchor" href="#licence" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licence</h2>
+
+<p>Released under the MIT Licence, see the <a href="https://github.com/Aircollition/Aircollition/blob/master/LICENSE.md"><code>LICENCE.md</code></a> file.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/Aircollition/Aircollition">Aircollition</a> is maintained by <a href="https://github.com/Aircollition">Aircollition</a>.</span>
