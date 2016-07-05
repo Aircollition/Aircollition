@@ -1,3 +1,6 @@
+# gitignore file for the proyect
+# ignores python, LaTeX and MAC extra files
+
 # Created by https://www.gitignore.io/api/python,latex,osx
 
 ### Python ###
