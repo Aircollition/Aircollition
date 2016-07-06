@@ -254,5 +254,6 @@ a {
 .full-width-div {
     position: absolute;
     width: 100%;
+  	height: 1em;
     left: 0;
 }
