@@ -38,6 +38,18 @@
 <a id="aircraft-path-simulation" class="anchor" href="#aircraft-path-simulation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Aircraft path simulation</h2>
 
 <p>The airplane path is principally influenced by the wind, this brings an aleatory factor in the flight model. The trajectories are modeled by an Ornstein-Uhlenbeck process according to [4]. More on the model can be found in the report (in french) and in the presentation (in french too). The goal is to estimate the probability of collision of two planes, for that the trajectories are simulated and using variance-reduction methods the probability of collision is calculated.</p>
+      
+<p>First the flight plan is commonly divided between waypoints at constans time (usually 20 min), the pilot has to follow this waypoints. We take the plane motion to be in 2D and consider a coordinate system following the motion of the aircraft, we divide it in the along-track and across-track axes. The aircraft trajectories are modelled by the following equations:		
+  \begin{align}
+			\mathrm d X_{a,t} &= v ~ \mathrm d t+\sigma_{a,t} ~ \mathrm d W_{a,t} \\
+			\mathrm d X_{c,t} &= \sigma_{c,t} ~ \mathrm d W_{c,t}
+	\end{align}
+      where $W_{a,t}$ and $ W_{c,t}$ are Brownian motions in the along and across track axes. For piloting reasons we consider that as times goes by the across-track trajectory is more certain (the pilot corrects the trajectory to follow the plan) and the along-track is more uncertain. Thus we want:
+      \begin{align}
+	X_{a,t} &\sim \mathcal{N}(vt,(r_a t)^2) \\
+	X_{c,t} &\sim \mathcal{N}(0,\min(\sigma_c, (r_c t)^2))
+\end{align}
+      where $r_a=0.25$ and $r_c=\frac{1}{57}$ are fixed factors of the model.</p>
 
 <h2>
 <a id="how-to-install-the-project" class="anchor" href="#how-to-install-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to install the project</h2>
