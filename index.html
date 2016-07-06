@@ -49,7 +49,13 @@
 	X_{a,t} &\sim \mathcal{N}(vt,(r_a t)^2) \\
 	X_{c,t} &\sim \mathcal{N}(0,\min(\sigma_c, (r_c t)^2))
 \end{align}
-      where $r_a=0.25$ and $r_c=\frac{1}{57}$ are fixed factors of the model.</p>
+      where $r_a=0.25$ and $r_c=\frac{1}{57}$ are fixed factors of the model. An other equivalent model is the following with a variance/covariance matrix (for $s<t$): 
+      \begin{align}
+		\mathbb{C}\mathrm{ov}(X_{a,t},X_{a,s}) &= r_a^2 t^2 \\
+		\mathbb{C}\mathrm{ov}(X_{c,t},X_{c,s}) &= \sigma_{c}^2 (1-e^{-2\frac{r_c}{\sigma_c}v(s-t)})e^{-\frac{r_c}{\sigma_c}v(s-t)}
+	\end{align}
+    We want to calculate the probability of collision, this is : 
+    $$\mathbb{P}\left(\exists i~|~ \lVert X^{(1)}_{i} - X^{(2)}_{i} \rVert_2 \leq \epsilon \right)$$</p>
 
 <h2>
 <a id="how-to-install-the-project" class="anchor" href="#how-to-install-the-project" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to install the project</h2>
