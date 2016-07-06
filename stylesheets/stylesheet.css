@@ -250,3 +250,9 @@ a {
   left: 0;
   padding-bottom: 1em;
 }
+
+.full-width-div {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
