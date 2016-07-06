@@ -247,5 +247,5 @@ a {
 .image { 
    position: static; 
    width: 100%; /* for IE 6 */
-  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
